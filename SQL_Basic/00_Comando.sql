@@ -23,5 +23,5 @@ ROLLBACK TRANSACTION:-- Si falla algo, deshago todo lo modificado.
 
 
 --Lenguaje de control de los datos - DCL - Data Control Language
-GRANT: --Otorgar permisos.
-REVOKE: --Revocar permisos.
+GRANT: --Otorgar permisos
+REVOKE: --Revocar permisos
