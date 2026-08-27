@@ -1,4 +1,3 @@
-
 const LECCIONES = {
 
   1: {
@@ -640,6 +639,17 @@ git log --oneline --graph --all</pre></div>
           <p>Si tienes cambios sin guardar, Git puede bloquear el cambio de rama para proteger tu trabajo.
           Históricamente la rama principal se llamaba <code>master</code>; desde 2020 la industria adoptó
           <code>main</code> como nombre por defecto.</p>`,
+      },
+      {
+        kicker: "Sandbox libre",
+        title: "Practica sin guion: tu propio repositorio",
+        type: "git-sandbox",
+        html: `<p class="prose-intro">Este es un repositorio libre: escribe tus propios comandos en la
+          terminal (<code>git init</code>, <code>git branch</code>, <code>git switch -c</code>,
+          <code>git merge</code>...) o haz clic directamente sobre cualquier commit del grafo para
+          <strong>agregar</strong> un commit nuevo, <strong>deshacerlo</strong>, <strong>mover</strong> el
+          puntero de una rama, <strong>fusionar</strong> dos ramas o simular un <strong>Pull Request</strong>.
+          A la derecha tienes una referencia con todos los comandos de Git por categoría.</p>`,
       },
     ],
   },

@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Lección · Git y GitHub Desde Cero</title>
+<title>Sandbox interactivo · Git y GitHub Desde Cero</title>
+<meta name="description" content="Practica Git libremente: escribe comandos o manipula el grafo de commits, ramas y HEAD directamente." />
 <link rel="stylesheet" href="variables.css" />
 <link rel="stylesheet" href="base.css" />
 <link rel="stylesheet" href="layout.css" />
@@ -32,27 +33,18 @@
   <section class="lesson-header">
     <div class="container">
       <a class="lesson-back" href="index.html">← Todos los módulos</a>
-      <span class="eyebrow" id="moduleEyebrow"></span>
-      <h1 id="moduleTitle"></h1>
-      <p class="lesson-desc" id="moduleDesc"></p>
+      <span class="eyebrow">// Practica sin guion</span>
+      <h1>Sandbox interactivo de Git</h1>
+      <p class="lesson-desc">Un repositorio libre para experimentar: escribe comandos reales de Git en la
+        terminal o haz clic sobre cualquier commit del grafo para agregar, deshacer, mover una rama,
+        fusionar o simular un Pull Request. A la derecha tienes la lista completa de comandos de Git
+        organizada por categoría.</p>
     </div>
   </section>
 
   <section class="lesson-body">
-    <div class="container lesson-layout">
-      <aside class="lesson-toc" id="lessonToc"></aside>
-
-      <div class="lesson-main" id="lessonMain">
-        <div class="progress-track"><span id="progressBarFill" style="width:0%"></span></div>
-        <p class="step-count" id="progressLabel" style="margin-bottom:14px;color:var(--text-muted);font-family:var(--font-mono);font-size:12.5px;"></p>
-
-        <div class="step-card" id="stepCard"></div>
-
-        <div class="step-nav" style="margin-top:34px;">
-          <a id="moduleLinkPrev" class="btn" href="#">← Módulo anterior</a>
-          <a id="moduleLinkNext" class="btn" href="#">Siguiente módulo →</a>
-        </div>
-      </div>
+    <div class="container">
+      <div id="sandboxMount"></div>
     </div>
   </section>
 </main>
@@ -64,17 +56,16 @@
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-<script>
-  if (window.mermaid) {
-    mermaid.initialize({ startOnLoad: false, theme: "dark", securityLevel: "loose", fontFamily: "Inter, sans-serif" });
-  }
-</script>
-<script src="modulos-meta.js"></script>
-<script src="lecciones-data.js"></script>
 <script src="git-comandos-data.js"></script>
-<script src="git-visualizer.js"></script>
 <script src="git-sandbox.js"></script>
-<script src="leccion.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    window.GitSandbox.mount(document.getElementById("sandboxMount"));
+
+    const toggle = document.getElementById("menuToggle");
+    const nav = document.getElementById("headerRight");
+    if (toggle && nav) toggle.addEventListener("click", () => nav.classList.toggle("is-open"));
+  });
+</script>
 </body>
 </html>

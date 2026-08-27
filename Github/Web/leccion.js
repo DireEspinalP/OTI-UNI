@@ -71,7 +71,7 @@
       <div class="step-kicker">${step.kicker}</div>
       <h3 class="step-title">${step.title}</h3>
       <div class="prose" id="stepContent">${step.html}</div>
-      ${step.type === "git-visualizer" || step.type === "git-visualizer-merge" ? `<div id="gvMount"></div>` : ""}
+      ${step.type === "git-visualizer" || step.type === "git-visualizer-merge" || step.type === "git-sandbox" ? `<div id="gvMount"></div>` : ""}
       <div class="step-nav">
         <button class="btn" id="btnPrev">← Anterior</button>
         <span class="step-count">Paso ${current + 1} de ${leccion.steps.length}</span>
@@ -102,6 +102,9 @@
     }
     if (step.type === "git-visualizer-merge" && window.GitVisualizer) {
       window.GitVisualizer.mount(document.getElementById("gvMount"), "merge");
+    }
+    if (step.type === "git-sandbox" && window.GitSandbox) {
+      window.GitSandbox.mount(document.getElementById("gvMount"));
     }
 
     document.getElementById("lessonMain").scrollIntoView({ behavior: "smooth", block: "start" });
