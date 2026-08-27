@@ -1,30 +1,55 @@
-// Metadata ligera usada por la página de inicio para pintar las tarjetas
-// de módulos. El contenido completo de cada lección vive en lecciones-data.js
-const MODULOS_META = [
-  { id: 1, label: "Módulo 1", title: "Fundamentos del control de versiones",
-    topics: ["Por qué existe Git", "Historial como línea de tiempo", "Control centralizado vs distribuido"] },
-  { id: 2, label: "Módulo 2", title: "Git y GitHub",
-    topics: ["Diferencia Git vs GitHub", "Local vs remoto", "push, pull y clone"] },
-  { id: 3, label: "Módulo 3", title: "Terminal y Linux básico",
-    topics: ["pwd, ls, cd", "mkdir y touch", "Git dentro del flujo DevOps"] },
-  { id: 4, label: "Módulo 4", title: "Instalación y configuración",
-    topics: ["Instalar en Windows/macOS/Linux", "user.name y user.email", "Editor por defecto"] },
-  { id: 5, label: "Módulo 5", title: "Primer repositorio local",
-    topics: ["git init", "La carpeta .git", "Directorio de trabajo"] },
-  { id: 6, label: "Módulo 6", title: "Estados, staging y commits",
-    topics: ["Working Directory → Staging → Repo", "git add / git commit", "Anatomía de un commit"] },
-  { id: 7, label: "Módulo 7", title: "Deshacer cambios",
-    topics: ["git restore", "restore --staged", "git revert"] },
-  { id: 8, label: "Módulo 8", title: ".gitignore y buenas prácticas",
-    topics: ["Qué ignorar", "gitignore global", "Commits atómicos"] },
-  { id: 9, label: "Módulo 9", title: "Ramas en Git",
-    topics: ["Rama = puntero a un commit", "switch y branch", "Simulador interactivo"] },
-  { id: 10, label: "Módulo 10", title: "Merge y conflictos",
-    topics: ["git merge", "Marcas de conflicto", "Resolver y continuar"] },
-  { id: 11, label: "Módulo 11", title: "Historial e inspección",
-    topics: ["git log --graph", "git diff / --staged", "Deshacer con criterio"] },
-  { id: 12, label: "Módulo 12", title: "Rebase y limpieza de historial",
-    topics: ["Cambiar la base de una rama", "Rebase vs merge", "Regla de oro"] },
-  { id: 13, label: "Módulo 13", title: "Bonus: Loki y la Línea Temporal",
-    topics: ["main como Línea Sagrada", "Eventos Nexus = conflictos", "git reset como retcon"] },
-];
+(function () {
+  "use strict";
+
+  const PROGRESS_KEY = "curso-git-progreso";
+
+  function leerProgreso() {
+    try {
+      return JSON.parse(localStorage.getItem(PROGRESS_KEY)) || {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function porcentajeModulo(id) {
+    const progreso = leerProgreso();
+    const total = (LECCIONES[id] && LECCIONES[id].steps.length) || 1;
+    const hecho = (progreso[id] && progreso[id].length) || 0;
+    return Math.round((hecho / total) * 100);
+  }
+
+  function renderModulos() {
+    const grid = document.getElementById("modulesGrid");
+    if (!grid) return;
+    grid.innerHTML = MODULOS_META.map((m) => {
+      const pct = porcentajeModulo(m.id);
+      return `
+      <a class="module-card" href="leccion.html?m=${m.id}">
+        <span class="m-num">${String(m.id).padStart(2, "0")}</span>
+        <span class="m-label">${m.label}</span>
+        <h3 class="m-title">${m.title}</h3>
+        <ul class="m-topics">
+          ${m.topics.map((t) => `<li>${t}</li>`).join("")}
+        </ul>
+        <div class="m-progress-row">
+          <div class="mini-progress"><span style="width:${pct}%"></span></div>
+          <span>${pct}%</span>
+        </div>
+      </a>`;
+    }).join("");
+  }
+
+  function setupMobileMenu() {
+    const toggle = document.getElementById("menuToggle");
+    const nav = document.getElementById("headerRight");
+    if (!toggle || !nav) return;
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("is-open");
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    renderModulos();
+    setupMobileMenu();
+  });
+})();
