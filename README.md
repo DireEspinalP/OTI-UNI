@@ -1,3 +1,7 @@
 # CURSOS-OTI-UNI
-<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/52cf28ce-b705-4c0f-89f0-cefe64610407" />
-Registro de cursos por OTI UNI
+ | Tema | Sitio web |
+ |---|---|
+ | Game Code| [Link](https://coddy.tech/onboard)|
+ | Github |[Link ](https://direespinalp.github.io/OTI-UNI/Github/Web/) |
+ | Python Basico |[Link](https://www.youtube.com/watch?v=Kp4Mvapo5kc&list=PLNdFk2_brsRdgQXLIlKBXQDeRf3qvXVU_) | 
+ | Python POO |[Link](https://www.youtube.com/watch?v=HtKqSJX7VoM&pp=ygUQY3Vyc28gcHl0aG9uIHBvbw%3D%3D) | 
